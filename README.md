@@ -10,28 +10,25 @@
 > 为了阻止跑一下代码就拿到数据的行为，仓库的代码并不会完整提供，一些功能会被删除，您需要自己找出问题并修复
 
 # 数据集结构设计
-```json
-<layer> := 
-{
+```bnf
+<document> ::= <node>+
+
+<node> ::= <layer> | <text>
+
+<layer> ::= {
     "type": "layer",
-    "title": "<title>",
-    "meta": "<meta>",
-    "content": [
-        <layer|text>
-    ]
+    "title": <string>,
+    "meta": <meta-type>,
+    "content": [ <node>* ]
 }
 
-<text> :=
-{
+<text> ::= {
     "type": "text",
-    "speaker": "Background",
-    "content": "...."
+    "speaker": <string>,
+    "content": <string>
 }
 
-<title> := (str)
-
-<meta> := (enum<str>)[ "paragraph" | "quote" ]
-
+<meta-type> ::= "paragraph" | "quote"
 ```
 
 # Cpt1
